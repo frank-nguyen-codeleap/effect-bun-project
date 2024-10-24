@@ -1,17 +1,7 @@
 export interface Pokemon {
   id: number;
   name: string;
+  base_experience: number;
   height: number;
-  abilities: Array<PokemonAbility>;
-}
-
-interface PokemonAbility {
-  is_hidden: boolean;
-  slot: number;
-  ability: Ability;
-}
-
-interface Ability {
-  id: number;
-  name: string;
+  weight: number;
 }
