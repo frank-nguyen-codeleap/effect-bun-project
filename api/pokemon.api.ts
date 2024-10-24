@@ -3,6 +3,7 @@ import { BASE_API } from "../constants.js";
 import { PokemonSchema, type Pokemon } from "../models/pokemon.model.js";
 import { Schema } from "@effect/schema";
 import { JsonParseError, NetworkError } from "../errors.js";
+import type { ParseError } from "@effect/schema/ParseResult";
 
 const pokemonParser = Schema.decodeUnknown(PokemonSchema);
 
@@ -22,5 +23,7 @@ const pokemonResponse = (
     )
   );
 
-export const getPokemon = (name: string) =>
+export const getPokemon = (
+  name: string
+): Effect.Effect<Pokemon, ParseError | NetworkError | JsonParseError> =>
   pipe(pokemonResponse(name), Effect.flatMap(pokemonParser));
