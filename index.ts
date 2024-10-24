@@ -1,5 +1,5 @@
 import { Effect } from "effect";
-import { getPokemon } from "./api/pokemon.js";
+import { getPokemon } from "./api/pokemon.api.js";
 
 const program = Effect.gen(function* () {
   const pokemon = yield* getPokemon("totodile");
