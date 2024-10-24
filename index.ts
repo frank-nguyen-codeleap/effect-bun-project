@@ -3,7 +3,7 @@ import { getPokemon } from "./api/pokemon.api.js";
 
 const program = Effect.gen(function* () {
   const pokemon = yield* getPokemon("totodile");
-  return pokemon.name;
+  return pokemon;
 });
 
 Effect.runPromise(program).then(console.log);
