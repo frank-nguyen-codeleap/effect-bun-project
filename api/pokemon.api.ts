@@ -7,6 +7,12 @@ import type { ParseError } from "@effect/schema/ParseResult";
 
 const pokemonParser = Schema.decodeUnknown(PokemonSchema);
 
+/**
+ * Fetches information about a Pokemon from the API.
+ * @param name - The name of the Pokemon.
+ * @returns An Effect that represents the asynchronous operation of fetching the Pokemon information.
+ *          It can either succeed with the parsed JSON response or fail with a NetworkError or JsonParseError.
+ */
 const pokemonResponse = (
   name: string
 ): Effect.Effect<unknown, NetworkError | JsonParseError> =>
@@ -23,6 +29,12 @@ const pokemonResponse = (
     )
   );
 
+/**
+ * Use the schema to parse and validate the response before return.
+ *
+ * @param name - The name of the Pokemon.
+ * @returns An Effect that resolves to a Pokemon object, or an error if the request fails or parsing fails.
+ */
 export const getPokemon = (
   name: string
 ): Effect.Effect<Pokemon, ParseError | NetworkError | JsonParseError> =>
